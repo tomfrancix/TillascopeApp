@@ -1,0 +1,13 @@
+<div class="m-1">
+    <button class="btn btn-outline-primary btn-block btn-category"
+    [class.active]="service.currentCategory == ''" (click)="service.currentCategory = ''">
+        All Categories
+    </button>
+    <button *ngFor="let subcategory of service.subcategories"
+            class="btn btn-outline-primary btn-block btn-category"
+            [class.active]="service.currentCategory.toLowerCase()
+                == subcategory.toLowerCase()"
+            (click)="service.currentCategory = subcategory">
+        {{ subcategory }}
+    </button>
+</div>

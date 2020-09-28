@@ -1,0 +1,26 @@
+
+<div class="container-fluid">
+  <div *ngIf="products?.length > 0; else nodata" class="row">
+    <div *ngFor="let product of products" class="col-md-3 p-2">
+      <div class="uk-panel card text-center">
+        <div style="max-height:210px;overflow:hidden;"><img src="../assets/images/{{ product.imageIcon }}" style="width:100%;height:210px;" class="loading"/></div>
+        <div class="card-footer" style="background-color:white;padding:8px 5px">
+          <h4>{{ product.subcategory }}</h4>
+          <div class="container-fluid">
+            <store-ratings [product]="product"></store-ratings>
+            <span class="float-right badge badge-pill badge-primary" style="background-color:darkslategrey; margin-top:3px;">
+              {{ product.price  | currency:"GBP":"symbol" }}
+            </span>
+          </div>
+          <button class="float-left btn btn-sm btn-info" style="margin:8px 2px 0 2px; width:48%;font-size:8pt;" [routerLink]="['/detail', product.productId]">More details...</button>
+          <button class="float-left btn btn-sm btn-success" style="margin:8px 2px 0 2px; width:48%;font-size:8pt;" (click)="addToCart(product)">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #nodata>
+    <h4 class="m-2">Waiting for data...</h4>
+</ng-template>
